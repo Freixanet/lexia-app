@@ -27,7 +27,7 @@
       "favicon": "./assets/favicon.png"
     },
     "experiments": {
-      "baseUrl": "/lexia-app/"
+      "baseUrl": "/lexia-app"
     }
   }
 }
