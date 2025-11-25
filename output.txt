@@ -1,0 +1,136 @@
+Script started on Tue Nov 25 03:34:22 2025
+Command: npx expo start --tunnel --clear
+[1G[0K⠙[1G[0KStarting project at /Users/mfreixanet/.gemini/antigravity/scratch/lexia-mobile
+Starting Metro Bundler
+warning: Bundler cache is empty, rebuilding (this may take a minute)
+Tunnel connected.
+Tunnel ready.
+▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+█ ▄▄▄▄▄ █▄▄██████▄██▄▄█ ▄▄▄▄▄ █
+█ █   █ █ ▀█ ▄    ▀ ▄ █ █   █ █
+█ █▄▄▄█ █▄ ▄▄▀█▄▄▄█▀ ▀█ █▄▄▄█ █
+█▄▄▄▄▄▄▄█▄▀▄▀▄█▄█▄▀ ▀▄█▄▄▄▄▄▄▄█
+█▄   ▀█▄▀▄▀████ ▄  █▀▀ ▀▀ ▄ █ █
+█ ▀ ▄▄█▄▀▀██▀▀▀███▄█▀▀ ▄▀ ▀██▀█
+█▀ ██▀▄▄█  ▀ █▀▀ ▀   █▄▀██▀▄ ▀█
+█  ▀▀▀ ▄▄██▀█ ▀▄█ █▀▄▄▄█ ▀█▄ ▄█
+█▄ ▀▀█ ▄ ▀▄ ▄▀▀█ ▀▀▀▄▀▄█▀▄█▀▀▄█
+█▄█ █▀▄▄ ▄█▄▄ ██▄█▀▄▀█ █▄▀  ▀██
+██▄██▄▄▄▄ ▀ ▄  ▀█▀▄██ ▄▄▄ ▀▄  █
+█ ▄▄▄▄▄ ██  ▄▄▄██▀▄▀▄ █▄█ █▄ ██
+█ █   █ █▀█▄▀ █ ▀ ▄▄▀▄ ▄  ▀ █▀█
+█ █▄▄▄█ █ █▄ █▄▀▀▀▄ █ █▀ ▀ █▀▄█
+█▄▄▄▄▄▄▄█▄█▄█▄█▄███▄▄▄█▄▄███▄██
+
+› Metro waiting on exp://tdaouoo-anonymous-8081.exp.direct
+› Scan the QR code above with Expo Go (Android) or the Camera app (iOS)
+
+› Web is waiting on http://localhost:8081
+
+› Using Expo Go
+› Press s │ switch to development build
+
+› Press a │ open Android
+› Press i │ open iOS simulator
+› Press w │ open web
+
+› Press j │ open debugger
+› Press r │ reload app
+› Press m │ toggle menu
+› shift+m │ more tools
+› Press o │ open project code in your editor
+
+› Press ? │ show all commands
+
+Logs for your project will appear below. Press Ctrl+C to exit.
+iOS ./index.ts ░░░░░░░░░░░░░░░░  0.0% (0/1)
+iOS ./index.ts ▓░░░░░░░░░░░░░░░  8.2% ( 37/177)
+iOS ./index.ts ▓▓▓▓▓▓▓▓▓▓▓▓▓░░░ 81.3% ( 495/2200)
+iOS ./index.ts ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 99.0% (2313/2356)
+iOS ./index.ts ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░ 99.0% (2767/2790)
+iOS Bundled 14920ms index.ts (2808 modules)
+ WARN  Due to changes in Androids permission requirements, Expo Go can no longer provide full access to the media library. To test the full functionality of this module, you can create a development build. https://docs.expo.dev/develop/development-builds/create-a-build
+ WARN  SafeAreaView has been deprecated and will be removed in a future release. Please use 'react-native-safe-area-context' instead. See https://github.com/th3rdwave/react-native-safe-area-context
+ WARN  [expo-image-picker] `ImagePicker.MediaTypeOptions` have been deprecated. Use `ImagePicker.MediaType` or an array of `ImagePicker.MediaType` instead.
+iOS ./index.ts ░░░░░░░░░░░░░░░░  0.0% (0/1)
+iOS Bundled 2570ms index.ts (1 module)
+ WARN  Due to changes in Androids permission requirements, Expo Go can no longer provide full access to the media library. To test the full functionality of this module, you can create a development build. https://docs.expo.dev/develop/development-builds/create-a-build
+ WARN  SafeAreaView has been deprecated and will be removed in a future release. Please use 'react-native-safe-area-context' instead. See https://github.com/th3rdwave/react-native-safe-area-context
+iOS src/services/gemini.ts ░░░░░░░░░░░░░░░░  0.0% (0/1)
+iOS Bundled 74ms src/services/gemini.ts (1 module)
+ ERROR  Error calling Gemini API (chat): [Error: Gemini API error 400: {
+  "error": {
+    "code": 400,
+    "message": "Invalid value at 'system_instruction' (type.googleapis.com/google.ai.generativelanguage.v1beta.Content), \"Eres Lexia, un asistente legal inteligente especializado en derecho español.\nTu objetivo es ayudar a los usuarios con consultas legales, redacción de documentos y asesoramiento jurídico.\nProporciona respuestas claras, precisas y profesionales. Cuando sea relevante, cita leyes o normativas españolas.\nSi algo está fuera de tu ámbito legal o requiere asesoramiento personalizado urgente, recomienda consultar con un abogado.\"",
+    "status": "INVALID_ARGUMENT",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.BadRequest",
+        "fieldViolations": [
+          {
+            "field": "system_instruction",
+            "description": "Invalid value at 'system_instruction' (type.googleapis.com/google.ai.generativelanguage.v1beta.Content), \"Eres Lexia, un asistente legal inteligente especializado en derecho español.\nTu objetivo es ayudar a los usuarios con consultas legales, redacción de documentos y asesoramiento jurídico.\nProporciona respuestas claras, precisas y profesionales. Cuando sea relevante, cita leyes o normativas españolas.\nSi algo está fuera de tu ámbito legal o requiere asesoramiento personalizado urgente, recomienda consultar con un abogado.\""
+          }
+        ]
+      }
+    ]
+  }
+}
+]
+ ERROR  Error: [Error: Error al conectar con Gemini: Gemini API error 400: {
+  "error": {
+    "code": 400,
+    "message": "Invalid value at 'system_instruction' (type.googleapis.com/google.ai.generativelanguage.v1beta.Content), \"Eres Lexia, un asistente legal inteligente especializado en derecho español.\nTu objetivo es ayudar a los usuarios con consultas legales, redacción de documentos y asesoramiento jurídico.\nProporciona respuestas claras, precisas y profesionales. Cuando sea relevante, cita leyes o normativas españolas.\nSi algo está fuera de tu ámbito legal o requiere asesoramiento personalizado urgente, recomienda consultar con un abogado.\"",
+    "status": "INVALID_ARGUMENT",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.BadRequest",
+        "fieldViolations": [
+          {
+            "field": "system_instruction",
+            "description": "Invalid value at 'system_instruction' (type.googleapis.com/google.ai.generativelanguage.v1beta.Content), \"Eres Lexia, un asistente legal inteligente especializado en derecho español.\nTu objetivo es ayudar a los usuarios con consultas legales, redacción de documentos y asesoramiento jurídico.\nProporciona respuestas claras, precisas y profesionales. Cuando sea relevante, cita leyes o normativas españolas.\nSi algo está fuera de tu ámbito legal o requiere asesoramiento personalizado urgente, recomienda consultar con un abogado.\""
+          }
+        ]
+      }
+    ]
+  }
+}
+]
+ ERROR  Error calling Gemini API (chat): [Error: Gemini API error 400: {
+  "error": {
+    "code": 400,
+    "message": "Invalid value at 'system_instruction' (type.googleapis.com/google.ai.generativelanguage.v1beta.Content), \"Eres Lexia, un asistente legal inteligente especializado en derecho español.\nTu objetivo es ayudar a los usuarios con consultas legales, redacción de documentos y asesoramiento jurídico.\nProporciona respuestas claras, precisas y profesionales. Cuando sea relevante, cita leyes o normativas españolas.\nSi algo está fuera de tu ámbito legal o requiere asesoramiento personalizado urgente, recomienda consultar con un abogado.\"",
+    "status": "INVALID_ARGUMENT",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.BadRequest",
+        "fieldViolations": [
+          {
+            "field": "system_instruction",
+            "description": "Invalid value at 'system_instruction' (type.googleapis.com/google.ai.generativelanguage.v1beta.Content), \"Eres Lexia, un asistente legal inteligente especializado en derecho español.\nTu objetivo es ayudar a los usuarios con consultas legales, redacción de documentos y asesoramiento jurídico.\nProporciona respuestas claras, precisas y profesionales. Cuando sea relevante, cita leyes o normativas españolas.\nSi algo está fuera de tu ámbito legal o requiere asesoramiento personalizado urgente, recomienda consultar con un abogado.\""
+          }
+        ]
+      }
+    ]
+  }
+}
+]
+ ERROR  Error: [Error: Error al conectar con Gemini: Gemini API error 400: {
+  "error": {
+    "code": 400,
+    "message": "Invalid value at 'system_instruction' (type.googleapis.com/google.ai.generativelanguage.v1beta.Content), \"Eres Lexia, un asistente legal inteligente especializado en derecho español.\nTu objetivo es ayudar a los usuarios con consultas legales, redacción de documentos y asesoramiento jurídico.\nProporciona respuestas claras, precisas y profesionales. Cuando sea relevante, cita leyes o normativas españolas.\nSi algo está fuera de tu ámbito legal o requiere asesoramiento personalizado urgente, recomienda consultar con un abogado.\"",
+    "status": "INVALID_ARGUMENT",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.BadRequest",
+        "fieldViolations": [
+          {
+            "field": "system_instruction",
+            "description": "Invalid value at 'system_instruction' (type.googleapis.com/google.ai.generativelanguage.v1beta.Content), \"Eres Lexia, un asistente legal inteligente especializado en derecho español.\nTu objetivo es ayudar a los usuarios con consultas legales, redacción de documentos y asesoramiento jurídico.\nProporciona respuestas claras, precisas y profesionales. Cuando sea relevante, cita leyes o normativas españolas.\nSi algo está fuera de tu ámbito legal o requiere asesoramiento personalizado urgente, recomienda consultar con un abogado.\""
+          }
+        ]
+      }
+    ]
+  }
+}
+]
