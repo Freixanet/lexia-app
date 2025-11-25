@@ -6,10 +6,13 @@ import { MediaUploadModal } from './MediaUploadModal';
 import { INITIAL_MESSAGE, getRandomResponse } from '../lib/mockData';
 import { clsx } from 'clsx';
 import { useColorScheme } from 'nativewind';
+import { streamChat } from '../services/gemini';
+
+import * as Clipboard from 'expo-clipboard';
 
 interface MessageType {
     id: string;
-    role: 'user' | 'assistant';
+    role: 'user' | 'model';
     content: string;
     isStreaming?: boolean;
 }
@@ -25,6 +28,8 @@ export function ChatArea({ isSidebarOpen, onToggle, isDark }: ChatAreaProps) {
     const [input, setInput] = useState('');
     const [isTyping, setIsTyping] = useState(false);
     const [isMediaModalOpen, setIsMediaModalOpen] = useState(false);
+    const [isDebugOpen, setIsDebugOpen] = useState(false);
+    const [debugLogs, setDebugLogs] = useState<string[]>([]);
     const flatListRef = useRef<FlatList>(null);
 
     const SUGGESTIONS = [
@@ -34,6 +39,17 @@ export function ChatArea({ isSidebarOpen, onToggle, isDark }: ChatAreaProps) {
         "Crear acuerdo de confidencialidad",
         "Consultar ley de propiedad intelectual"
     ];
+
+    const addDebugLog = (log: string) => {
+        const timestamp = new Date().toLocaleTimeString();
+        setDebugLogs(prev => [`[${timestamp}] ${log}`, ...prev]);
+    };
+
+    const copyLogs = async () => {
+        const logsText = debugLogs.join('\n');
+        await Clipboard.setStringAsync(logsText);
+        alert('Logs copiados al portapapeles');
+    };
 
     const handleSend = async () => {
         if (!input.trim()) return;
@@ -48,21 +64,19 @@ export function ChatArea({ isSidebarOpen, onToggle, isDark }: ChatAreaProps) {
         const currentInput = input;
         setInput('');
         setIsTyping(true);
+        setDebugLogs([]); // Clear logs on new request
 
         // Create placeholder for AI response
         const aiMessageId = (Date.now() + 1).toString();
         const aiResponse: MessageType = {
             id: aiMessageId,
-            role: 'assistant',
+            role: 'model',
             content: '',
             isStreaming: true
         };
         setMessages(prev => [...prev, aiResponse]);
 
         try {
-            // Import dynamically to avoid any potential issues
-            const { streamChat } = await import('../services/gemini');
-
             // Build conversation history
             const history = messages.map(msg => ({
                 role: msg.role,
@@ -81,7 +95,8 @@ export function ChatArea({ isSidebarOpen, onToggle, isDark }: ChatAreaProps) {
                                 : msg
                         )
                     );
-                }
+                },
+                addDebugLog // Pass debug callback
             );
 
             // Mark as complete
@@ -95,6 +110,7 @@ export function ChatArea({ isSidebarOpen, onToggle, isDark }: ChatAreaProps) {
         } catch (error) {
             console.error('Error:', error);
             const errorMessage = error instanceof Error ? error.message : 'Error desconocido';
+            addDebugLog(`Error: ${errorMessage}`);
 
             setMessages(prev =>
                 prev.map(msg =>
@@ -131,7 +147,7 @@ export function ChatArea({ isSidebarOpen, onToggle, isDark }: ChatAreaProps) {
                 </View>
 
                 {/* Header */}
-                <View className="h-14 flex-row items-center justify-between px-4 bg-white dark:bg-[#111827]">
+                <View className="h-14 flex-row items-center justify-between px-4 bg-white dark:bg-[#111827] z-10">
                     <View className="flex-row items-center gap-3">
                         {!isSidebarOpen && (
                             <TouchableOpacity
@@ -143,11 +159,44 @@ export function ChatArea({ isSidebarOpen, onToggle, isDark }: ChatAreaProps) {
                         )}
                         <Text className="font-medium text-lg text-gray-900 dark:text-white">Lexia</Text>
                     </View>
-                    <TouchableOpacity className="flex-row items-center gap-2 bg-emerald-600 px-3 py-1.5 rounded-md">
-                        <FileText size={14} color="white" />
-                        <Text className="text-xs text-white font-medium">Generar Doc</Text>
-                    </TouchableOpacity>
+                    <View className="flex-row gap-2">
+                        <TouchableOpacity
+                            onPress={() => setIsDebugOpen(!isDebugOpen)}
+                            className={`px-3 py-1.5 rounded-md ${isDebugOpen ? 'bg-red-500' : 'bg-gray-200 dark:bg-gray-700'}`}
+                        >
+                            <Text className={`text-xs font-medium ${isDebugOpen ? 'text-white' : 'text-gray-700 dark:text-gray-300'}`}>
+                                {isDebugOpen ? 'Hide Logs' : 'Debug'}
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity className="flex-row items-center gap-2 bg-emerald-600 px-3 py-1.5 rounded-md">
+                            <FileText size={14} color="white" />
+                            <Text className="text-xs text-white font-medium">Generar Doc</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
+
+                {/* Debug Logs Overlay */}
+                {isDebugOpen && (
+                    <View className="absolute top-14 left-0 right-0 h-64 bg-black/90 z-50 p-4 border-b border-gray-700">
+                        <View className="flex-row justify-between items-center mb-2">
+                            <Text className="text-white font-bold">Debug Logs</Text>
+                            <TouchableOpacity
+                                onPress={copyLogs}
+                                className="bg-blue-600 px-3 py-1 rounded"
+                            >
+                                <Text className="text-white text-xs font-bold">Copiar Todo</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <ScrollView className="flex-1 bg-gray-900 rounded p-2">
+                            <Text
+                                className="text-green-400 font-mono text-xs"
+                                selectable={true}
+                            >
+                                {debugLogs.length === 0 ? 'Waiting for logs...' : debugLogs.join('\n')}
+                            </Text>
+                        </ScrollView>
+                    </View>
+                )}
 
                 {/* Messages */}
                 <FlatList
@@ -185,6 +234,9 @@ export function ChatArea({ isSidebarOpen, onToggle, isDark }: ChatAreaProps) {
                             </ScrollView>
                         </View>
                     )}
+
+
+
 
                     <View className="flex-row items-center gap-3">
                         {/* Upload Button */}
