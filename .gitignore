@@ -40,3 +40,5 @@ yarn-error.*
 /ios
 /android
 src/config/secret.ts
+output.txt
+expo.log
